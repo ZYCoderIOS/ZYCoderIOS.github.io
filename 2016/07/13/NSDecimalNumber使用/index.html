@@ -129,7 +129,7 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2016-07-13T09:46:14.000Z" class="post-list__meta--date date">2016-07-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <time datetime="2016-07-13T09:50:24.000Z" class="post-list__meta--date date">2016-07-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
       <span class="page-pv">
       &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
@@ -140,7 +140,7 @@
 
   <section class="post">
     <hr>
-<h2 id="一、NSDecimalNumber使用场景"><a href="#一、NSDecimalNumber使用场景" class="headerlink" title="一、NSDecimalNumber使用场景"></a>一、NSDecimalNumber使用场景</h2><ul>
+<h2 id="NSDecimalNumber使用场景"><a href="#NSDecimalNumber使用场景" class="headerlink" title="NSDecimalNumber使用场景"></a>NSDecimalNumber使用场景</h2><ul>
 <li>四舍五入</li>
 <li>商品价格处理</li>
 </ul>
@@ -156,6 +156,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">NSDecimalNumber *price1 = [NSDecimalNumber decimalNumberWithString:@&quot;15.99&quot;];</div><div class="line">NSDecimalNumber *price2 = [NSDecimalNumber decimalNumberWithString:@&quot;29.99&quot;];</div><div class="line">NSDecimalNumber *coupon = [NSDecimalNumber decimalNumberWithString:@&quot;5.00&quot;];</div><div class="line">NSDecimalNumber *discount = [NSDecimalNumber decimalNumberWithString:@&quot;.90&quot;];</div><div class="line">NSDecimalNumber *numProducts = [NSDecimalNumber decimalNumberWithString:@&quot;2.0&quot;];</div><div class="line"></div><div class="line">NSDecimalNumber *subtotal = [price1 decimalNumberByAdding:price2];</div><div class="line">NSDecimalNumber *afterCoupon = [subtotal decimalNumberBySubtracting:coupon];</div><div class="line">NSDecimalNumber *afterDiscount = [afterCoupon decimalNumberByMultiplyingBy:discount];</div><div class="line">NSDecimalNumber *average = [afterDiscount decimalNumberByDividingBy:numProducts];</div><div class="line">NSDecimalNumber *averageSquared = [average decimalNumberByRaisingToPower:2];</div><div class="line"></div><div class="line">NSLog(@&quot;Subtotal: %@&quot;, subtotal);                    // 45.98</div><div class="line">NSLog(@&quot;After coupon: %@&quot;, afterCoupon);           // 40.98</div><div class="line">NSLog((@&quot;After discount: %@&quot;), afterDiscount);       // 36.882</div><div class="line">NSLog(@&quot;Average price per product: %@&quot;, average);    // 18.441</div><div class="line">NSLog(@&quot;Average price squared: %@&quot;, averageSquared); // 340.070481</div></pre></td></tr></table></figure>
 <p>通常货币计算都是保存小数点后两位,只要这样</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">NSDecimalNumber * inputNumber = [[NSDecimalNumber alloc]initWithString:@&quot;340.070481&quot;];</div><div class="line">NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler</div><div class="line">                                   decimalNumberHandlerWithRoundingMode:NSRoundUp</div><div class="line">                                   scale:2</div><div class="line">                                   raiseOnExactness:NO</div><div class="line">                                   raiseOnOverflow:NO</div><div class="line">                                   raiseOnUnderflow:NO</div><div class="line">                                   raiseOnDivideByZero:YES];</div><div class="line">NSDecimalNumber * number = [inputNumber decimalNumberByRoundingAccordingToBehavior: roundUp];</div><div class="line">结果就是340.07</div></pre></td></tr></table></figure>
+
   </section>
 
 </article>
